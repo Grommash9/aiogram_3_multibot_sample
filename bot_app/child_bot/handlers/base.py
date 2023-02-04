@@ -1,18 +1,7 @@
-import asyncio
-import logging
-import sys
-from os import getenv
-from typing import Any, Dict
-from aiogram import Bot, Dispatcher, F, Router, html
-
-
-from aiogram import Bot, Dispatcher, F, Router, html
+from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import (
-    KeyboardButton,
     Message,
-    ReplyKeyboardMarkup,
-    ReplyKeyboardRemove,
 )
 
 child_bot_router = Router()

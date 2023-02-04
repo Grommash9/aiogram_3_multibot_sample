@@ -17,3 +17,13 @@ import requests
 # resp = requests.post('https://d4f6-159-224-193-190.eu.ngrok.io/add_new_bot', json=data)
 # print(resp)
 # print(resp.text)
+
+
+numbers_list = [1, 2, 3, 4, 5]
+
+x = 9
+
+for first_number in numbers_list:
+    for second_number in numbers_list:
+        if second_number + first_number == 9:
+            print(first_number, second_number)
