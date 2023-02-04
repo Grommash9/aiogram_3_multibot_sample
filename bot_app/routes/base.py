@@ -16,7 +16,7 @@ def is_bot_token(value: str) -> Union[bool, Dict[str, Any]]:
     return True
 
 
-@routes.post('/send_notification')
+@routes.post(f'/{config.API_ROUTE_URL}/send_notification')
 async def send_any_notification(request: Request):
     """
     Get the request data as a JSON object.
@@ -35,7 +35,7 @@ async def send_any_notification(request: Request):
     return web.json_response({'error': 'ok', 'message_data': message_data.json()}, status=200)
 
 
-@routes.post('/edit_message')
+@routes.post(f'/{config.API_ROUTE_URL}/edit_message')
 async def edit_message(request: Request):
     """
     Get the request data as a JSON object.
@@ -55,7 +55,7 @@ async def edit_message(request: Request):
     return web.json_response({'error': 'ok'}, status=200)
 
 
-@routes.post('/add_new_bot')
+@routes.post(f'/{config.API_ROUTE_URL}/add_new_bot')
 async def adding_new_bot(request: Request):
     """
     Get the request data as a JSON object.

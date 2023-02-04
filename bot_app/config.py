@@ -7,7 +7,7 @@ cwd = Path().cwd()
 
 BASE_URL = os.getenv("WEBHOOK_HOST", "https://example.com")
 MAIN_BOT_TOKEN = os.getenv("MAIN_BOT_TOKEN")
-
+API_ROUTE_URL = os.getenv("API_ROUTE_URL")
 WEB_SERVER_HOST = os.getenv('BOT_SERVER_HOST')
 WEB_SERVER_PORT = os.getenv('BOT_SERVER_PORT')
 MAIN_BOT_PATH = f"/aiogram_{cwd.name}/main"
