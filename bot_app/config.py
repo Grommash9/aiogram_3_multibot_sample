@@ -1,8 +1,5 @@
-import json
 from pathlib import Path
-
 from dotenv import load_dotenv
-
 load_dotenv()
 import os
 
@@ -27,29 +24,3 @@ MYSQL = {
     'port': int(os.getenv('MYSQL_PORT'))
     # 'unix_socket': '/var/run/mysqld/mysqld.sock'
 }
-
-#
-# ROUTE_URL = os.getenv('ROUTE_URL')
-# POLLING = os.getenv('POLLING')
-# ADMINS_ID = json.loads(os.getenv('ADMINS_ID'))
-# BOT_TOKEN = os.getenv('BOT_TOKEN')
-# is_ssl = os.getenv('SSL')
-#
-# NOTIFY_USERS = json.loads(os.getenv('NOTIFY_USERS'))
-#
-# WEBHOOK_HOST = os.getenv('WEBHOOK_HOST')
-# WEBHOOK_PATH = f'{cwd.name}'
-# WEBHOOK_URL = f"{WEBHOOK_HOST}/{WEBHOOK_PATH}/"
-#
-# BOT_SERVER = {
-#     'host': os.getenv('BOT_SERVER_HOST'),
-#     'port': os.getenv('BOT_SERVER_PORT')
-# }
-#
-# REDIS = {
-#     'db': 2,
-#     'prefix': cwd.name
-# }
-# # sad
-#
-#

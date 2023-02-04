@@ -1,26 +1,11 @@
-from os import getenv
 from typing import Any, Dict, Union
-
-from aiohttp import web
-from bot_app.child_bot.handlers.base import child_bot_router
 from bot_app import config
-from aiogram import Bot, Dispatcher, F, Router
-from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.exceptions import TelegramUnauthorizedError
 from aiogram.filters import Command, CommandObject
-from aiogram.fsm.storage.redis import DefaultKeyBuilder, RedisStorage
 from aiogram.types import Message
 from aiogram.utils.token import TokenValidationError, validate_token
-from aiogram.webhook.aiohttp_server import (
-    SimpleRequestHandler,
-    TokenBasedRequestHandler,
-    setup_application,
-)
-from aiogram import Bot, Dispatcher, F, Router
-from aiogram.dispatcher.event.event import EventObserver
+from aiogram import Bot, F, Router
 main_router = Router()
-
-
 
 
 def is_bot_token(value: str) -> Union[bool, Dict[str, Any]]:
@@ -31,7 +16,6 @@ def is_bot_token(value: str) -> Union[bool, Dict[str, Any]]:
     return True
 
 
-
 @main_router.message(Command(commands=["start"]))
 async def start_echo_command(message: Message, command: CommandObject):
     await message.answer('hello i am mother bot')
@@ -39,6 +23,15 @@ async def start_echo_command(message: Message, command: CommandObject):
 
 @main_router.message(Command(commands=["add"], magic=F.args.func(is_bot_token)))
 async def command_add_bot(message: Message, command: CommandObject, bot: Bot) -> Any:
+    """
+    Check if the provided argument is a valid bot token using is_bot_token function.
+    If the argument is a valid bot token, create a new instance of the Bot class with the provided token and session.
+    Get the user information for the new bot using get_me method.
+    Delete the current webhook for the new bot using delete_webhook method, with drop_pending_updates set to True.
+    Set the new webhook URL for the new bot using the set_webhook method, the URL will be constructed using
+    config.OTHER_BOTS_URL and the provided bot token.
+    Send a message to the original Telegram chat with the answer "Bot @<bot_username> successful added".
+    """
     new_bot = Bot(token=command.args, session=bot.session)
     try:
         bot_user = await new_bot.get_me()

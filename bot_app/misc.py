@@ -1,20 +1,13 @@
-from os import getenv
-from typing import Any, Dict, Union
 from bot_app.handlers.base import main_router
 from aiohttp import web
 from bot_app.child_bot.handlers.base import child_bot_router
 from bot_app import config
-from aiogram import Bot, Dispatcher, F, Router
+from aiogram import Bot, Dispatcher
 from aiogram.client.session.aiohttp import AiohttpSession
-from aiogram.exceptions import TelegramUnauthorizedError
-from aiogram.filters import Command, CommandObject
 from aiogram.fsm.storage.redis import DefaultKeyBuilder, RedisStorage
-from aiogram.types import Message
-from aiogram.utils.token import TokenValidationError, validate_token
 from aiogram.webhook.aiohttp_server import (
     SimpleRequestHandler,
     TokenBasedRequestHandler,
-    setup_application,
 )
 
 async def on_startup(dispatcher: Dispatcher, bot: Bot):
